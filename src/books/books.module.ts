@@ -3,6 +3,6 @@ import { BooksService } from './books.service';
 import { BooksResolver } from './books.resolver';
 
 @Module({
-  providers: [BooksResolver, BooksService]
+  providers: [BooksResolver, BooksService],
 })
 export class BooksModule {}
