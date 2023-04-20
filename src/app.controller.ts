@@ -1,6 +1,7 @@
-import { Controller, Get, Body } from '@nestjs/common';
+import { Controller, Get, Body, Post, UseGuards } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ApiTags, ApiOperation, ApiProperty } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
 
 class CreateIndexDto {
   @ApiProperty({ description: '主键' })
@@ -19,5 +20,11 @@ export class AppController {
       id,
     );
     return this.appService.getHello();
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Post('test')
+  async test(@Body() body) {
+    return body;
   }
 }
